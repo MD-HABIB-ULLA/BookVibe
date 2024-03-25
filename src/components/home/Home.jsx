@@ -19,6 +19,10 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <h1 className="text-5xl font-bold text-black mb-6 text-center mt-5">
+              Books 
+            </h1>
     </div>
   );
 };
