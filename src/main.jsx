@@ -11,14 +11,13 @@ import Details from "./components/Details/Details.jsx";
 import Read from "./components/listedbooks/Read.jsx";
 // import WishCard from "./components/listedbooks/WishCard.jsx";
 // import Wish from "./components/listedbooks/Wish.jsx";
-import Wish2 from "./components/listedbooks/Wish2.jsx";
+import Wish from "./components/listedbooks/Wish.jsx";
 // import wish from "./components/listedbooks/wish.jsx";
 // import Wish from "./components/listedbooks/Wish.jsx";
 
 const router = createBrowserRouter([
   {
     path: "",
-
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
@@ -32,17 +31,18 @@ const router = createBrowserRouter([
         element: <Listedbooks />,
         children: [
           {
-            path: "/listedbooks/read",
+            path: "",
             element: <Read />,
           },
           {
-            path:"/listedbooks/wish",
-            element: <Wish2/>
-          }
+            path: "wish",
+            element: <Wish />,
+          },
         ],
       },
       {
         path: "/pagestoread",
+        loader: () => fetch("/books.json"),
         element: <Pagestoread />,
       },
       {

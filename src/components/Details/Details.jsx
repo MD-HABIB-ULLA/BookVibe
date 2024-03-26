@@ -13,10 +13,8 @@ import {
 
 const Details = () => {
   const data = useLoaderData();
-  console.log(useLoaderData(), parseInt(useParams().id));
   const id = parseInt(useParams().id);
   const book = data?.find((book) => book.bookId === id);
-  console.log(id, data);
   const {
     image,
     author,
@@ -31,8 +29,9 @@ const Details = () => {
     yearOfPublishing,
   } = book;
   const { read, setRead } = useContext(ReadContext);
-  const notifyError = () => {
-    toast.error("You already added this book", {
+
+  const notifyError4 = () => {
+    toast.error("This book is already in Read list.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -43,8 +42,8 @@ const Details = () => {
       theme: "light",
     });
   };
-  const notifysuc = ()=>{
-    toast.success('Book added to wish list', {
+  const notifyError3 = () => {
+    toast.error("This book is already in Wish list.", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -53,40 +52,60 @@ const Details = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
-  }
-  const notifysuc2 = ()=>{
-    toast.success('you read this book', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
-  }
-
-  const readEventHandler = () => {
-    if (getStoredRead().includes(bookId)) {
-      notifyError();
-    } else {
-      saveWishlist(getWishlist().filter((item) => item !== bookId));
-      addToRead(bookId);
-      notifysuc2();
-    }
+    });
   };
+  const notifysuc = () => {
+    toast.success("Book added to wish list", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+  const notifysuc2 = () => {
+    toast.success("Book added to your Read list.", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const wishEventHandler = () => {
     if (getWishlist().includes(bookId) || getStoredRead().includes(bookId)) {
-      notifyError();
+      notifyError3();
     } else {
       addToWishlist(bookId);
       notifysuc();
     }
   };
 
-  console.log(typeof bookId, getStoredRead(), getWishlist());
+  const readEventHandler = () => {
+    const storedRead = getStoredRead();
+    const storedWishlist = getWishlist();
+
+    if (storedRead.includes(bookId)) {
+      notifyError4();
+    } else if (storedWishlist.includes(bookId)) {
+      const updatedWishlist = storedWishlist.filter((item) => item !== bookId);
+      console.log(storedWishlist);
+      saveWishlist(updatedWishlist);
+    }
+
+    addToRead(bookId);
+  
+  };
+
+  console.log(getStoredRead(), getWishlist());
+
   return (
     <div>
       <div className="card lg:card-side  bg-base-100 grid lg:grid-cols-2">

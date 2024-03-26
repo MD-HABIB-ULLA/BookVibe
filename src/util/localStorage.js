@@ -18,22 +18,24 @@ const addToRead = (id) => {
 };
 
 export { addToRead, getStoredRead };
+
+
 const getWishlist = () => {
-    const storedReadString = localStorage.getItem('Wishlist');
-    if (storedReadString) {
-        return JSON.parse(storedReadString);
+    const storedWishString = localStorage.getItem('Wishlist');
+    if (storedWishString) {
+        return JSON.parse(storedWishString);
     }
     return [];
 }
 
 const saveWishlist = (Wishlist) => {
-    const readStringified = JSON.stringify(Wishlist);
-    localStorage.setItem('Wishlist', readStringified);
+    const wishStringified = JSON.stringify(Wishlist);
+    localStorage.setItem('Wishlist', wishStringified);
 }
 
 const addToWishlist = (id) => {
-    const readItem = getStoredRead();
-    const updatedCart = [...readItem, id];
+    const wishItem = getWishlist();
+    const updatedCart = [...wishItem, id];
     saveWishlist(updatedCart);
 };
 
