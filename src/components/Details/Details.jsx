@@ -80,8 +80,10 @@ const Details = () => {
   };
 
   const wishEventHandler = () => {
-    if (getWishlist().includes(bookId) || getStoredRead().includes(bookId)) {
+    if (getWishlist().includes(bookId)) {
       notifyError3();
+    } else if (getStoredRead().includes(bookId)) {
+      notifyError4();
     } else {
       addToWishlist(bookId);
       notifysuc();
@@ -98,10 +100,12 @@ const Details = () => {
       const updatedWishlist = storedWishlist.filter((item) => item !== bookId);
       console.log(storedWishlist);
       saveWishlist(updatedWishlist);
+      notifysuc2();
+      addToRead(bookId)
+    } else {
+      notifysuc2();
+      addToRead(bookId);
     }
-
-    addToRead(bookId);
-  
   };
 
   console.log(getStoredRead(), getWishlist());
