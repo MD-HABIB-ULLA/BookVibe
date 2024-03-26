@@ -1,35 +1,52 @@
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const ListedNavber = () => {
+  const [active, setActive] = useState(0);
+
+  const location = useLocation();
+  console.log(location);
+
+  const handleSetActive = (index) => {
+    setActive(index);
+  };
+  useEffect(() => {
+    if(location.pathname.includes("/wish")){
+      handleSetActive(1)
+    }
+  }, [location]);
   return (
     <div>
-      <div className="flex container m-auto items-center justify-center mt-5">
-        <NavLink
-         
-          to=""
-          className={({ isActive }) =>
-            `duration-200 rounded-tl-lg rounded-tr-lg ${
-              isActive
-                ? "text-black font-bold border-r border-l border-t border-black"
-                : "text-gray-700 border-b  border-black"
-            } hover:bg-gray-50 lg:hover:bg-transparent hover:text-[#23BE0A] font-bold p-3`
-          }
-        >
-          Read Books
-        </NavLink>
-        <NavLink
-          to="wish"
-          className={({ isActive }) =>
-            `duration-200 rounded-tl-lg rounded-tr-lg ${
-              isActive
-                ? "text-black font-bold border-r border-l border-t border-black"
-                : "text-gray-700 border-b  border-black"
-            } hover:bg-gray-50 lg:hover:bg-transparent hover:text-[#23BE0A] font-bold p-3`
-          }
-        >
-          Wishlist Books
-        </NavLink>
-        <h1 className="flex-1 border-b border-black p-3 text-white">hdfh</h1>
+      <div className="container m-auto mt-9 px-7">
+        <div className="flex items-start -mx-4 overflow-x-auto overflow-y-hidden sm:justify-stretch  flex-nowrap ">
+          <Link
+            onClick={() => handleSetActive(0)}
+            to=""
+            className={`flex items-start ${
+              active === 0
+                ? "border border-b-0 rounded-t-lg font-bold "
+                : "border-b "
+            } px-5 py-3 space-x-2 border-b dark:border-gray-600 dark:text-gray-600`}
+          >
+            <span>Read Books</span>
+          </Link>
+          <Link
+            onClick={() => handleSetActive(1)}
+            to="wish"
+            className={`flex items-start ${
+              active === 1
+                ? "border border-b-0 rounded-t-lg  font-bold"
+                : "border-b "
+            } px-5 py-3 space-x-2 border-b dark:border-gray-600 dark:text-gray-600`}
+          >
+            <span>Wishlist Books</span>
+          </Link>
+
+          <span className="flex cursor-default items-start flex-1 px-5 py-3 space-x-2  border-b rounded-t-lg dark:border-gray-600  text-white">
+            erwer
+          </span>
+        </div>
       </div>
     </div>
   );
