@@ -1,17 +1,40 @@
-const getStoredCart = () => {
-    const storedCartString = localStorage.getItem('cartItem');
-    if (storedCartString) {
-        return JSON.parse(storedCartString)
+const getStoredRead = () => {
+    const storedReadString = localStorage.getItem('readItem');
+    if (storedReadString) {
+        return JSON.parse(storedReadString);
     }
-    return []
+    return [];
 }
-const saveCartToLS = cartItem =>{
-    const cartStingified = JSON.stringify(cartItem);
-    localStorage.setItem('cart',cartStingified)
+
+const saveCartToLS = (readItem) => {
+    const readStringified = JSON.stringify(readItem);
+    localStorage.setItem('readItem', readStringified);
 }
-const addToCart = id => {
-    const cartItem = getStoredCart();
-    const updatedCart = [...cartItem, id];
+
+const addToRead = (id) => {
+    const readItem = getStoredRead();
+    const updatedCart = [...readItem, id];
     saveCartToLS(updatedCart);
 };
-export {addToCart, getStoredCart};
+
+export { addToRead, getStoredRead };
+const getWishlist = () => {
+    const storedReadString = localStorage.getItem('Wishlist');
+    if (storedReadString) {
+        return JSON.parse(storedReadString);
+    }
+    return [];
+}
+
+const saveWishlist = (Wishlist) => {
+    const readStringified = JSON.stringify(Wishlist);
+    localStorage.setItem('Wishlist', readStringified);
+}
+
+const addToWishlist = (id) => {
+    const readItem = getStoredRead();
+    const updatedCart = [...readItem, id];
+    saveWishlist(updatedCart);
+};
+
+export { addToWishlist, getWishlist,saveWishlist };
