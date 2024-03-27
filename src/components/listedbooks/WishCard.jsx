@@ -3,7 +3,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { RiBookOpenLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 const WishCard = ({ book }) => {
-  console.log(book);
+
   const {
     image,
     author,

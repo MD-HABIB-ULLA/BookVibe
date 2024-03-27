@@ -6,7 +6,7 @@ const ListedNavber = () => {
   const [active, setActive] = useState(0);
 
   const location = useLocation();
-  console.log(location);
+
 
   const handleSetActive = (index) => {
     setActive(index);

@@ -12,6 +12,8 @@ import Read from "./components/listedbooks/Read.jsx";
 // import WishCard from "./components/listedbooks/WishCard.jsx";
 // import Wish from "./components/listedbooks/Wish.jsx";
 import Wish from "./components/listedbooks/Wish.jsx";
+import Author from "./components/autor/Author.jsx";
+import TopReads from "./components/topreads/TopReads.jsx";
 // import wish from "./components/listedbooks/wish.jsx";
 // import Wish from "./components/listedbooks/Wish.jsx";
 
@@ -51,6 +53,15 @@ const router = createBrowserRouter([
         path: "/details/:id",
         loader: () => fetch("/books.json"),
         element: <Details />,
+      },{
+        path:"/author",
+        loader: ()=> fetch("/writer.json"),
+        element:<Author/>
+      },
+      {
+        path:"/topreads",
+        loader: ()=> fetch("/tpreads.json"),
+        element:<TopReads/>
       },
     ],
   },
