@@ -18,8 +18,8 @@ const TopReads = () => {
         <h1>Reading Trends</h1>
       </div>
       <div>
-        <div className="overflow-x-auto w-3/5 m-auto mt-5">
-          <table className="table border  border-[#23BE0A]  ">
+        <div className="overflow-x-auto lg:w-3/5 m-auto mt-5  border  border-[#23BE0A] rounded-lg  p-4">
+          <table className="table">
             {/* head */}
             <thead>
               <tr className="font-bold text-xl">

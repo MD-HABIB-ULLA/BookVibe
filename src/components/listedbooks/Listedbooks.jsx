@@ -1,15 +1,16 @@
 import { Outlet } from "react-router-dom";
 import ListedNavber from "./ListedNavber";
 import { useState } from "react";
+import Context from "../../context/readcontext";
 
 const Listedbooks = () => {
-  const [sortBy, setSortBy] = useState(""); // State variable to store the selected value
+  const [sortBy, setSortBy] = useState("");
 
-  // Event handler to update the selected value when the selection changes
+ 
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
   };
-  console.log(sortBy)
+  console.log(sortBy);
 
   return (
     <div>
@@ -19,8 +20,8 @@ const Listedbooks = () => {
       <div className="text-center mt-7">
         <select
           className="select select-bordered font-bold text-white bg-[#23BE0A] max-w-xs"
-          value={sortBy} // Set the selected value to the state variable
-          onChange={handleSortByChange} // Call the event handler when the selection changes
+          value={sortBy} 
+          onChange={handleSortByChange} 
         >
           <option disabled value="">
             Sort By
@@ -30,8 +31,10 @@ const Listedbooks = () => {
           <option value="Publisher year">Publisher year</option>
         </select>
       </div>
-      <ListedNavber sortBy={sortBy} /> {/* Pass the selected value to ListedNavber */}
-      <Outlet />
+      <Context.Provider value={sortBy}>
+        <ListedNavber />
+        <Outlet />
+      </Context.Provider>
     </div>
   );
 };
